@@ -23,7 +23,8 @@
 
 /* 
  * if you change this you need to also calculate the number of bytes 
- * for the bitfields using (TOTCELLSFORLVL/4)+1 */
+ * for the bitfields using (TOTCELLSFORLVL/4)+1 
+ */
 #define TOTLVLS 4 
 #define BITFIELDBYTES    4 /*for totlvs 4*/
 #define TOTCELLSFORLVL(x, y) { int _x = 1; int _cnt = 0; (y) = 1; \
@@ -102,7 +103,8 @@ struct allocationInfo {
 	size_t offset;
 };
 
-/* recursivelly go down the tree till you get to the correct level
+/* 
+ * recursivelly go down the tree till you get to the correct level
  * and try to allocate there.  
  * if it returns false it means allocation failed, otherwise the offset
  * will be added to the base pointer.
@@ -155,7 +157,7 @@ allocRecurse(buddy_allocator_t *b, size_t hm, int lvl, long cell)
 		/* 
  		 * if we just allocated a right child, 
 		 * add the offset of the min alloc at his lvl 
-		 * */
+		 */
 		childret.offset += (b->memsz)/(1<<lvl);
 		DTREEPRINTF(lvl, "offset is now at :%zd\n", childret.offset);
 		return childret;
